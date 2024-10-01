@@ -38,11 +38,11 @@ jobs:
 
       - name: Run Kubernetes
         run: |
-            kubectl apply -f mysql-configmap.yml
-            kubectl apply -f mysql-deployment.yml
-            kubectl apply -f mysql-secrets.yml
-            kubectl apply -f mysql-svc.yml
-            kubectl apply -f two-tier-app-deployment.yml
-            kubectl apply -f two-tier-app-svc.yml
+            kubectl apply -f eks-manifests/mysql-configmap.yml
+            kubectl apply -f eks-manifests/mysql-deployment.yml
+            kubectl apply -f eks-manifests/mysql-secrets.yml
+            kubectl apply -f eks-manifests/mysql-svc.yml
+            kubectl apply -f eks-manifests/two-tier-app-deployment.yml
+            kubectl apply -f eks-manifests/two-tier-app-svc.yml
       
       
