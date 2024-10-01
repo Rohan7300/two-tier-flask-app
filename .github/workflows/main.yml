@@ -44,5 +44,7 @@ jobs:
             kubectl apply -f eks-manifests/mysql-svc.yml
             kubectl apply -f eks-manifests/two-tier-app-deployment.yml
             kubectl apply -f eks-manifests/two-tier-app-svc.yml
-      
+      - name: Service URL
+        run: |
+            kubectl get svc
       
