@@ -10,3 +10,25 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        
+      - name: Configure-AWS-Credentials
+        uses: aws-actions/Configure-AWS-Credentials@v1
+        with:
+          aws-acess-key-id: AKIA4K66BPQCGEH2TMU5
+          aws-secret-acess-key: 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
+          aws-region: us-east-1
+
+      - name: login to ecr
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Build, Tag
+        id: build-image
+        env:
+           ECR_REGISTRY: 848184835076.dkr.ecr.us-east-1.amazonaws.com/two-tier
+           ECR_REPOSITORY: two-tier
+           IMAGE_TAG: latest
+        run: |
+           aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 848184835076.dkr.ecr.us-east-1.amazonaws.com
+           docker build -t ${ECR_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG} .
+           docker push ${ECR_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG}
